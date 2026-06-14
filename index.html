@@ -14,6 +14,7 @@
     --ink: #1C1C1A;
     --muted: #7A7870;
     --rule: #D8D5CE;
+    --accent: #2C2C28;
   }
 
   body {
@@ -28,196 +29,348 @@
     padding: 2rem 1rem;
   }
 
-  .container { width: 100%; max-width: 560px; }
+  .container {
+    width: 100%;
+    max-width: 560px;
+  }
 
   /* INTRO */
-  #screen-intro { text-align: center; padding: 3rem 0; }
+  #screen-intro {
+    text-align: center;
+    padding: 3rem 0;
+  }
   #screen-intro .eyebrow {
-    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2rem;
   }
   #screen-intro h1 {
-    font-family: 'Cormorant Garamond', serif; font-size: 2.8rem;
-    font-weight: 300; line-height: 1.15; margin-bottom: 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
   }
-  #screen-intro h1 em { font-style: italic; font-weight: 300; }
+  #screen-intro h1 em {
+    font-style: italic;
+    font-weight: 300;
+  }
   #screen-intro p {
-    font-size: 0.9rem; line-height: 1.8; color: var(--muted);
-    max-width: 380px; margin: 0 auto 2.5rem;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 380px;
+    margin: 0 auto 2.5rem;
   }
   .btn-start {
-    display: inline-block; background: var(--ink); color: var(--bg);
-    font-family: 'Inter', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em;
-    text-transform: uppercase; padding: 0.9rem 2.5rem; border: none;
-    cursor: pointer; transition: opacity 0.2s;
+    display: inline-block;
+    background: var(--ink);
+    color: var(--bg);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.9rem 2.5rem;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
   }
   .btn-start:hover { opacity: 0.75; }
-
-  /* PROGRESS */
-  .progress-bar { display: flex; gap: 0.3rem; margin-bottom: 2rem; }
-  .progress-dot { height: 2px; flex: 1; background: var(--rule); transition: background 0.3s; }
-  .progress-dot.done { background: var(--ink); }
 
   /* ÉTAPES */
   #screen-steps { display: none; }
 
   .step-header {
-    display: flex; align-items: baseline; gap: 1rem;
-    margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
   }
   .step-number {
-    font-family: 'Cormorant Garamond', serif; font-size: 3rem;
-    font-weight: 300; color: var(--rule); line-height: 1;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--rule);
+    line-height: 1;
   }
-  .step-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+  .step-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
 
-  .step-card { display: none; animation: fadeIn 0.4s ease; }
+  .step-card {
+    display: none;
+    animation: fadeIn 0.4s ease;
+  }
   .step-card.active { display: block; }
 
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  /* CLUE BOX */
   .clue-box {
-    background: white; border: 1px solid var(--rule);
-    padding: 1.5rem 1.75rem; margin-bottom: 1.5rem; position: relative;
+    background: white;
+    border: 1px solid var(--rule);
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 1.5rem;
   }
   .clue-label {
-    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 0.6rem;
-    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
   }
   .clue-text {
-    font-family: 'Cormorant Garamond', serif; font-size: 1.35rem;
-    font-weight: 300; font-style: italic; line-height: 1.5; color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--ink);
   }
 
-  /* HINT BUTTON */
-  .hint-btn {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 18px; height: 18px; border-radius: 50%;
-    border: 1px solid var(--rule); background: var(--bg);
-    color: var(--muted); font-size: 0.6rem; font-family: 'Inter', sans-serif;
-    cursor: pointer; flex-shrink: 0; transition: all 0.2s; position: relative;
-    font-style: normal;
-  }
-  .hint-btn:hover { border-color: var(--ink); color: var(--ink); }
-  .hint-tooltip {
-    display: none; position: absolute; top: 50%; left: calc(100% + 8px);
-    transform: translateY(-50%);
-    background: var(--ink); color: var(--bg);
-    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 0.3rem 0.6rem; white-space: nowrap; pointer-events: none;
-    z-index: 10;
-  }
-  .hint-tooltip.visible { display: block; }
-
-  /* FOUND BUTTON */
   .btn-found {
-    width: 100%; background: transparent; border: 1px solid var(--ink);
-    color: var(--ink); font-family: 'Inter', sans-serif; font-size: 0.75rem;
-    letter-spacing: 0.15em; text-transform: uppercase; padding: 0.9rem;
-    cursor: pointer; transition: all 0.2s; margin-bottom: 1.5rem;
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 1.5rem;
   }
   .btn-found:hover { background: var(--ink); color: var(--bg); }
 
   /* QUESTION */
-  .question-section { display: none; animation: fadeIn 0.4s ease; }
+  .question-section {
+    display: none;
+    animation: fadeIn 0.4s ease;
+  }
   .question-section.visible { display: block; }
 
   .question-box {
-    background: white; border: 1px solid var(--rule);
-    padding: 1.5rem 1.75rem; margin-bottom: 1rem;
+    background: white;
+    border: 1px solid var(--rule);
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 1rem;
   }
   .question-label {
-    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 0.6rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
   }
   .question-text {
-    font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
-    font-weight: 300; line-height: 1.5;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.5;
   }
 
-  .answer-row { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; }
+  .answer-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
   .answer-input {
-    flex: 1; border: 1px solid var(--rule); background: white;
-    font-family: 'Inter', sans-serif; font-size: 0.85rem; padding: 0.75rem 1rem;
-    color: var(--ink); outline: none; transition: border-color 0.2s;
+    flex: 1;
+    border: 1px solid var(--rule);
+    background: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
   }
   .answer-input:focus { border-color: var(--ink); }
   .btn-validate {
-    background: var(--ink); color: var(--bg); border: none;
-    font-family: 'Inter', sans-serif; font-size: 0.75rem; letter-spacing: 0.1em;
-    text-transform: uppercase; padding: 0.75rem 1.25rem; cursor: pointer; transition: opacity 0.2s;
+    background: var(--ink);
+    color: var(--bg);
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
   }
   .btn-validate:hover { opacity: 0.75; }
 
-  .feedback { font-size: 0.8rem; color: var(--muted); min-height: 1.2rem; margin-bottom: 0.5rem; }
+  .feedback {
+    font-size: 0.8rem;
+    color: var(--muted);
+    min-height: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
   .feedback.error { color: #B05050; }
   .feedback.success { color: #4A7C59; }
 
-  /* DONUT REVEAL */
+  /* CACHETTE DONUT */
   .donut-reveal {
-    display: none; background: white; border: 1px solid var(--rule);
-    padding: 1.5rem 1.75rem; margin-top: 1rem; animation: fadeIn 0.4s ease;
+    display: none;
+    background: white;
+    border: 1px solid var(--rule);
+    padding: 1.5rem 1.75rem;
+    margin-top: 1rem;
+    animation: fadeIn 0.4s ease;
   }
   .donut-reveal.visible { display: block; }
   .donut-label {
-    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 0.6rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
   }
-  .donut-text { font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; }
+  .donut-text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
   .donut-photo-placeholder {
-    width: 100%; height: 180px; background: var(--bg); border: 1px dashed var(--rule);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em;
-    text-transform: uppercase; margin-bottom: 1rem;
+    width: 100%;
+    height: 180px;
+    background: var(--bg);
+    border: 1px dashed var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
   }
   .btn-next {
-    width: 100%; background: var(--ink); color: var(--bg); border: none;
-    font-family: 'Inter', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em;
-    text-transform: uppercase; padding: 0.9rem; cursor: pointer; transition: opacity 0.2s;
+    width: 100%;
+    background: var(--ink);
+    color: var(--bg);
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.9rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
   }
   .btn-next:hover { opacity: 0.75; }
 
+  /* PROGRESS */
+  .progress-bar {
+    display: flex;
+    gap: 0.3rem;
+    margin-bottom: 2rem;
+  }
+  .progress-dot {
+    height: 2px;
+    flex: 1;
+    background: var(--rule);
+    transition: background 0.3s;
+  }
+  .progress-dot.done { background: var(--ink); }
+
   /* BONUS */
-  #screen-bonus { display: none; text-align: center; padding: 3rem 0; animation: fadeIn 0.6s ease; }
+  #screen-bonus {
+    display: none;
+    text-align: center;
+    padding: 3rem 0;
+    animation: fadeIn 0.6s ease;
+  }
   #screen-bonus .eyebrow {
-    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 2rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2rem;
   }
   #screen-bonus h2 {
-    font-family: 'Cormorant Garamond', serif; font-size: 2.2rem;
-    font-weight: 300; margin-bottom: 1rem; line-height: 1.2;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    line-height: 1.2;
   }
-  #screen-bonus p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
-  .bonus-clue-box {
-    background: white; border: 1px solid var(--rule);
-    padding: 1.5rem 1.75rem; margin-bottom: 1.5rem; text-align: left;
+  #screen-bonus p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 2rem;
   }
 
-  /* PROPOSAL */
-  #screen-proposal { display: none; text-align: center; padding: 3rem 0; animation: fadeIn 0.8s ease; }
-  #screen-proposal h2 {
-    font-family: 'Cormorant Garamond', serif; font-size: 3rem;
-    font-weight: 300; font-style: italic; line-height: 1.2; margin-bottom: 3rem;
+  .bonus-clue-box {
+    background: white;
+    border: 1px solid var(--rule);
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
   }
-  .yes-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* DEMANDE */
+  #screen-proposal {
+    display: none;
+    text-align: center;
+    padding: 3rem 0;
+    animation: fadeIn 0.8s ease;
+  }
+  #screen-proposal h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.2;
+    margin-bottom: 3rem;
+  }
   .btn-yes {
-    background: var(--ink); color: var(--bg); font-family: 'Inter', sans-serif;
-    font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
-    padding: 1.1rem 3.5rem; border: none; cursor: pointer; transition: opacity 0.2s;
+    display: inline-block;
+    background: var(--ink);
+    color: var(--bg);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 1.1rem 3.5rem;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
   }
   .btn-yes:hover { opacity: 0.75; }
 
-  /* FINAL */
-  #screen-final { display: none; padding: 2rem 0 3rem; animation: fadeIn 0.8s ease; }
-  .final-rule { width: 40px; height: 1px; background: var(--rule); margin: 0 auto 2.5rem; }
+  /* MESSAGE FINAL */
+  #screen-final {
+    display: none;
+    padding: 2rem 0 3rem;
+    animation: fadeIn 0.8s ease;
+  }
+  .final-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--rule);
+    margin: 0 auto 2.5rem;
+  }
   .final-text {
-    font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
-    font-weight: 300; line-height: 1.9; text-align: center; color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.9;
+    text-align: center;
+    color: var(--ink);
   }
   .final-text p + p { margin-top: 1.4rem; }
 </style>
@@ -244,12 +397,7 @@
         <span class="step-label">Premier indice</span>
       </div>
       <div class="clue-box">
-        <div class="clue-label">
-          Indice
-          <button class="hint-btn" onclick="toggleHint('hint-1')" title="Un indice ?">?
-            <span class="hint-tooltip" id="hint-1">Accroché</span>
-          </button>
-        </div>
+        <div class="clue-label">Indice</div>
         <div class="clue-text">« Il ne porte pas le monde, mais soutient notre passé. »</div>
       </div>
       <button class="btn-found" onclick="showQuestion(1)">J'ai trouvé ✓</button>
@@ -266,6 +414,7 @@
         <div class="donut-reveal" id="donut-1">
           <div class="donut-label">Bien joué — voici ta récompense 🍩</div>
           <div class="donut-text">Va chercher ton donut ici :</div>
+          <!-- REMPLACE CE BLOC PAR UNE VRAIE PHOTO ou description de cachette -->
           <div class="donut-photo-placeholder">Photo de la cachette du donut 1</div>
           <button class="btn-next" onclick="nextStep(2)">Indice suivant →</button>
         </div>
@@ -279,19 +428,14 @@
         <span class="step-label">Deuxième indice</span>
       </div>
       <div class="clue-box">
-        <div class="clue-label">
-          Indice
-          <button class="hint-btn" onclick="toggleHint('hint-2')" title="Un indice ?">?
-            <span class="hint-tooltip" id="hint-2">Volumineux</span>
-          </button>
-        </div>
+        <div class="clue-label">Indice</div>
         <div class="clue-text">« L'endroit où ni l'un ni l'autre ne sont capables de faire un choix. »</div>
       </div>
       <button class="btn-found" onclick="showQuestion(2)">J'ai trouvé ✓</button>
       <div class="question-section" id="q2">
         <div class="question-box">
           <div class="question-label">Question</div>
-          <div class="question-text">Quel jour une troisième trace de fessier s'est-elle ajoutée à ce canapé ?</div>
+          <div class="question-text">Quel jour une troisième trace de fessier s'est-elle ajoutée à ce canapé ? (JJ/MM/AAAA)</div>
         </div>
         <div class="answer-row">
           <input class="answer-input" id="input-2" type="text" placeholder="Ta réponse…" onkeydown="if(event.key==='Enter')checkAnswer(2)">
@@ -314,19 +458,14 @@
         <span class="step-label">Troisième indice</span>
       </div>
       <div class="clue-box">
-        <div class="clue-label">
-          Indice
-          <button class="hint-btn" onclick="toggleHint('hint-3')" title="Un indice ?">?
-            <span class="hint-tooltip" id="hint-3">Jeux vidéo</span>
-          </button>
-        </div>
+        <div class="clue-label">Indice</div>
         <div class="clue-text">« Avant d'avoir notre chez nous, il y avait ta chambre, un écran, et des heures à explorer un monde post-apocalyptique ensemble. »</div>
       </div>
       <button class="btn-found" onclick="showQuestion(3)">J'ai trouvé ✓</button>
       <div class="question-section" id="q3">
         <div class="question-box">
           <div class="question-label">Question</div>
-          <div class="question-text">4 étages, 1 alignement. Quelle est ta couleur ?</div>
+          <div class="question-text">4 étages, 1 alignement. Quelle est la tienne ?</div>
         </div>
         <div class="answer-row">
           <input class="answer-input" id="input-3" type="text" placeholder="Ta réponse…" onkeydown="if(event.key==='Enter')checkAnswer(3)">
@@ -349,12 +488,7 @@
         <span class="step-label">Quatrième indice</span>
       </div>
       <div class="clue-box">
-        <div class="clue-label">
-          Indice
-          <button class="hint-btn" onclick="toggleHint('hint-4')" title="Un indice ?">?
-            <span class="hint-tooltip" id="hint-4">Repos</span>
-          </button>
-        </div>
+        <div class="clue-label">Indice</div>
         <div class="clue-text">« Notre refuge, rien qu'à nous. »</div>
       </div>
       <button class="btn-found" onclick="showQuestion(4)">J'ai trouvé ✓</button>
@@ -384,19 +518,14 @@
         <span class="step-label">Dernier indice</span>
       </div>
       <div class="clue-box">
-        <div class="clue-label">
-          Indice
-          <button class="hint-btn" onclick="toggleHint('hint-5')" title="Un indice ?">?
-            <span class="hint-tooltip" id="hint-5">JJ/MM/AAAA au JJ/MM/AAAA</span>
-          </button>
-        </div>
+        <div class="clue-label">Indice</div>
         <div class="clue-text">« Notre première vraie escapade, toi, moi et les amis. »</div>
       </div>
       <button class="btn-found" onclick="showQuestion(5)">J'ai trouvé ✓</button>
       <div class="question-section" id="q5">
         <div class="question-box">
           <div class="question-label">Question</div>
-          <div class="question-text">Du combien au combien étions-nous au Corbier ? (jour, mois et année)</div>
+          <div class="question-text">Du combien au combien étions-nous au Corbier ?</div>
         </div>
         <div class="answer-row">
           <input class="answer-input" id="input-5" type="text" placeholder="Ta réponse…" onkeydown="if(event.key==='Enter')checkAnswer(5)">
@@ -407,7 +536,7 @@
           <div class="donut-label">Bien joué — voici ta récompense 🍩</div>
           <div class="donut-text">Va chercher ton donut ici :</div>
           <div class="donut-photo-placeholder">Photo de la cachette du donut 5</div>
-          <button class="btn-next" onclick="goBonus()">Bonus →</button>
+          <button class="btn-next" onclick="goBonus()">Continuer →</button>
         </div>
       </div>
     </div>
@@ -429,10 +558,7 @@
   <!-- DEMANDE -->
   <div id="screen-proposal">
     <h2>Veux-tu te<br>PACS avec moi ?</h2>
-    <div class="yes-buttons">
-      <button class="btn-yes" onclick="showFinal()">Oui</button>
-      <button class="btn-yes" onclick="showFinal()">Oui</button>
-    </div>
+    <button class="btn-yes" onclick="showFinal()">Oui</button>
   </div>
 
   <!-- MESSAGE FINAL -->
@@ -449,36 +575,25 @@
 </div>
 
 <script>
+  // ── RÉPONSES ACCEPTÉES ──────────────────────────────────────────────
+  // Ajoute autant de variantes que tu veux pour chaque question.
   const ANSWERS = {
     1: ['2', 'deux'],
     2: ['11/01/2026', '11 janvier 2026', '11 jan 2026', '11-01-2026'],
     3: ['blanc', 'blanche', 'white'],
     4: ['26/02/2022', '26 février 2022', '26 fev 2022', '26-02-2022'],
-    5: ['13 au 20', '13/01 au 20/01', '13 janvier au 20 janvier', '13/01/2024 au 20/01/2024', 'du 13 au 20']
+    5: ['13/01/2024 au 20/01/2024', '13 janvier 2024 au 20 janvier 2024']
   };
 
   function normalize(str) {
-    return str.toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    return str.toLowerCase().trim()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
-
-  function toggleHint(id) {
-    // Close all other tooltips first
-    document.querySelectorAll('.hint-tooltip').forEach(t => {
-      if (t.id !== id) t.classList.remove('visible');
-    });
-    document.getElementById(id).classList.toggle('visible');
-  }
-
-  // Close tooltips when clicking elsewhere
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.hint-btn')) {
-      document.querySelectorAll('.hint-tooltip').forEach(t => t.classList.remove('visible'));
-    }
-  });
 
   function startGame() {
     document.getElementById('screen-intro').style.display = 'none';
-    document.getElementById('screen-steps').style.display = 'block';
+    const steps = document.getElementById('screen-steps');
+    steps.style.display = 'block';
     buildProgress();
     updateProgress(1);
   }
@@ -495,11 +610,9 @@
   }
 
   function updateProgress(current) {
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i < current; i++) {
       const dot = document.getElementById('dot-' + i);
-      if (!dot) continue;
-      if (i < current) dot.classList.add('done');
-      else dot.classList.remove('done');
+      if (dot) dot.classList.add('done');
     }
   }
 
@@ -514,7 +627,7 @@
     const val = normalize(input.value);
     const accepted = ANSWERS[step].map(normalize);
 
-    if (accepted.some(a => val.includes(a) || (a.includes(val) && val.length > 1))) {
+    if (accepted.some(a => val.includes(a) || a.includes(val) && val.length > 1)) {
       feedback.textContent = 'Bonne réponse !';
       feedback.className = 'feedback success';
       input.disabled = true;
