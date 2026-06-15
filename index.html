@@ -128,7 +128,26 @@
     text-transform: uppercase;
     color: var(--muted);
     margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
+  .hint-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 1px solid var(--rule); background: var(--bg);
+    color: var(--muted); font-size: 0.6rem; font-family: 'Inter', sans-serif;
+    cursor: pointer; flex-shrink: 0; transition: all 0.2s; position: relative;
+  }
+  .hint-btn:hover { border-color: var(--ink); color: var(--ink); }
+  .hint-tooltip {
+    display: none; position: absolute; top: 50%; left: calc(100% + 8px);
+    transform: translateY(-50%);
+    background: var(--ink); color: var(--bg);
+    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.3rem 0.6rem; white-space: nowrap; z-index: 10;
+  }
+  .hint-tooltip.visible { display: block; }
   .clue-text {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.35rem;
@@ -397,7 +416,9 @@
         <span class="step-label">Premier indice</span>
       </div>
       <div class="clue-box">
-        <div class="clue-label">Indice</div>
+        <div class="clue-label">Indice
+          <button class="hint-btn" onclick="toggleHint('hint-1')">?<span class="hint-tooltip" id="hint-1">Accroché</span></button>
+        </div>
         <div class="clue-text">« Il ne porte pas le monde, mais soutient notre passé. »</div>
       </div>
       <button class="btn-found" onclick="showQuestion(1)">J'ai trouvé ✓</button>
@@ -428,7 +449,9 @@
         <span class="step-label">Deuxième indice</span>
       </div>
       <div class="clue-box">
-        <div class="clue-label">Indice</div>
+        <div class="clue-label">Indice
+          <button class="hint-btn" onclick="toggleHint('hint-2')">?<span class="hint-tooltip" id="hint-2">Volumineux</span></button>
+        </div>
         <div class="clue-text">« L'endroit où ni l'un ni l'autre ne sont capables de faire un choix. »</div>
       </div>
       <button class="btn-found" onclick="showQuestion(2)">J'ai trouvé ✓</button>
@@ -458,14 +481,16 @@
         <span class="step-label">Troisième indice</span>
       </div>
       <div class="clue-box">
-        <div class="clue-label">Indice</div>
+        <div class="clue-label">Indice
+          <button class="hint-btn" onclick="toggleHint('hint-3')">?<span class="hint-tooltip" id="hint-3">Jeux vidéo</span></button>
+        </div>
         <div class="clue-text">« Avant d'avoir notre chez nous, il y avait ta chambre, un écran, et des heures à explorer un monde post-apocalyptique ensemble. »</div>
       </div>
       <button class="btn-found" onclick="showQuestion(3)">J'ai trouvé ✓</button>
       <div class="question-section" id="q3">
         <div class="question-box">
           <div class="question-label">Question</div>
-          <div class="question-text">4 étages, 1 alignement. Quelle est la tienne ?</div>
+          <div class="question-text">4 étages, 1 alignement. Quelle est ta couleur ?</div>
         </div>
         <div class="answer-row">
           <input class="answer-input" id="input-3" type="text" placeholder="Ta réponse…" onkeydown="if(event.key==='Enter')checkAnswer(3)">
@@ -488,7 +513,9 @@
         <span class="step-label">Quatrième indice</span>
       </div>
       <div class="clue-box">
-        <div class="clue-label">Indice</div>
+        <div class="clue-label">Indice
+          <button class="hint-btn" onclick="toggleHint('hint-4')">?<span class="hint-tooltip" id="hint-4">Repos</span></button>
+        </div>
         <div class="clue-text">« Notre refuge, rien qu'à nous. »</div>
       </div>
       <button class="btn-found" onclick="showQuestion(4)">J'ai trouvé ✓</button>
@@ -518,14 +545,16 @@
         <span class="step-label">Dernier indice</span>
       </div>
       <div class="clue-box">
-        <div class="clue-label">Indice</div>
+        <div class="clue-label">Indice
+          <button class="hint-btn" onclick="toggleHint('hint-5')">?<span class="hint-tooltip" id="hint-5">JJ/MM/AAAA au JJ/MM/AAAA</span></button>
+        </div>
         <div class="clue-text">« Notre première vraie escapade, toi, moi et les amis. »</div>
       </div>
       <button class="btn-found" onclick="showQuestion(5)">J'ai trouvé ✓</button>
       <div class="question-section" id="q5">
         <div class="question-box">
           <div class="question-label">Question</div>
-          <div class="question-text">Du combien au combien étions-nous au Corbier ?</div>
+          <div class="question-text">Du combien au combien étions-nous au Corbier ? (jour, mois et année)</div>
         </div>
         <div class="answer-row">
           <input class="answer-input" id="input-5" type="text" placeholder="Ta réponse…" onkeydown="if(event.key==='Enter')checkAnswer(5)">
@@ -536,10 +565,25 @@
           <div class="donut-label">Bien joué — voici ta récompense 🍩</div>
           <div class="donut-text">Va chercher ton donut ici :</div>
           <div class="donut-photo-placeholder">Photo de la cachette du donut 5</div>
-          <button class="btn-next" onclick="goBonus()">Continuer →</button>
+          <button class="btn-next" onclick="goBonus()">Bonus →</button>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- BONUS GATE -->
+  <div id="screen-bonus-gate" style="display:none; text-align:center; padding:4rem 0; animation: fadeIn 0.6s ease;">
+    <button id="btn-bonus-gate" onclick="goBonus()" style="
+      background: var(--ink); color: var(--bg);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 300; font-style: italic;
+      letter-spacing: 0.08em;
+      padding: 1.5rem 4rem;
+      border: none; cursor: pointer;
+      transition: opacity 0.2s;
+    " onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">
+      Bonus
+    </button>
   </div>
 
   <!-- BONUS -->
@@ -558,7 +602,10 @@
   <!-- DEMANDE -->
   <div id="screen-proposal">
     <h2>Veux-tu te<br>PACS avec moi ?</h2>
+    <div style="display:flex; gap:1rem; justify-content:center;">
     <button class="btn-yes" onclick="showFinal()">Oui</button>
+    <button class="btn-yes" onclick="showFinal()">Oui</button>
+  </div>
   </div>
 
   <!-- MESSAGE FINAL -->
@@ -582,7 +629,7 @@
     2: ['11/01/2026', '11 janvier 2026', '11 jan 2026', '11-01-2026'],
     3: ['blanc', 'blanche', 'white'],
     4: ['26/02/2022', '26 février 2022', '26 fev 2022', '26-02-2022'],
-    5: ['13/01/2024 au 20/01/2024', '13 janvier 2024 au 20 janvier 2024']
+    5: ['13/01/2024 au 20/01/2024', '13 janvier 2024 au 20 janvier 2024', '13/01/24 au 20/01/24', 'du 13/01/2024 au 20/01/2024']
   };
 
   function normalize(str) {
@@ -590,12 +637,46 @@
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
+  // ── MODE DEV ─────────────────────────────────────────────────────────
+  const DEV_MODE = true; // passe à false avant la mise en prod
+
+  function addSkipButtons() {
+    if (!DEV_MODE) return;
+    for (let i = 1; i <= 5; i++) {
+      const q = document.getElementById('q' + i);
+      if (!q) continue;
+      const btn = document.createElement('button');
+      btn.textContent = 'Skip →';
+      btn.style.cssText = 'margin-top:0.5rem;background:transparent;border:1px dashed #B05050;color:#B05050;font-family:Inter,sans-serif;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.4rem 0.9rem;cursor:pointer;';
+      btn.onclick = () => {
+        document.getElementById('input-' + i).disabled = true;
+        document.getElementById('feedback-' + i).textContent = '';
+        document.getElementById('donut-' + i).classList.add('visible');
+      };
+      q.appendChild(btn);
+    }
+  }
+
+  function toggleHint(id) {
+    document.querySelectorAll('.hint-tooltip').forEach(t => {
+      if (t.id !== id) t.classList.remove('visible');
+    });
+    document.getElementById(id).classList.toggle('visible');
+  }
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.hint-btn')) {
+      document.querySelectorAll('.hint-tooltip').forEach(t => t.classList.remove('visible'));
+    }
+  });
+
   function startGame() {
     document.getElementById('screen-intro').style.display = 'none';
     const steps = document.getElementById('screen-steps');
     steps.style.display = 'block';
     buildProgress();
     updateProgress(1);
+    addSkipButtons();
   }
 
   function buildProgress() {
@@ -610,9 +691,11 @@
   }
 
   function updateProgress(current) {
-    for (let i = 1; i < current; i++) {
+    for (let i = 1; i <= 5; i++) {
       const dot = document.getElementById('dot-' + i);
-      if (dot) dot.classList.add('done');
+      if (!dot) continue;
+      if (i < current) dot.classList.add('done');
+      else dot.classList.remove('done');
     }
   }
 
@@ -647,8 +730,15 @@
   }
 
   function goBonus() {
-    document.getElementById('screen-steps').style.display = 'none';
-    document.getElementById('screen-bonus').style.display = 'block';
+    if (document.getElementById('screen-steps').style.display !== 'none') {
+      // Vient des étapes → affiche le bonus-gate
+      document.getElementById('screen-steps').style.display = 'none';
+      document.getElementById('screen-bonus-gate').style.display = 'block';
+    } else {
+      // Vient du bonus-gate → affiche le vrai bonus
+      document.getElementById('screen-bonus-gate').style.display = 'none';
+      document.getElementById('screen-bonus').style.display = 'block';
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
